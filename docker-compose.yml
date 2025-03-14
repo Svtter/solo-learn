@@ -1,0 +1,18 @@
+services:
+  mae-project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8892:8888"
+    volumes:
+      - .:/workspace
+    shm_size: 32gb
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
